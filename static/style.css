@@ -22,14 +22,14 @@ body {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
-  padding: 40px 20px 64px;
+  padding: 22px 20px 40px;
   -webkit-font-smoothing: antialiased;
 }
 
 /* ---- ambient background video (Double Sunset) ---- */
 .bg-video {
   position: fixed; inset: 0; width: 100%; height: 100%;
-  object-fit: cover;              /* fill the screen edge-to-edge */
+  object-fit: contain;            /* zoom all the way out — show the whole picture */
   object-position: center;
   background: #000;
   z-index: -2; pointer-events: none;
@@ -37,33 +37,33 @@ body {
 .bg-overlay {
   position: fixed; inset: 0; z-index: -1; pointer-events: none;
   background:
-    radial-gradient(900px 520px at 50% -8%, rgba(228,97,19,0.14), transparent 62%),
-    linear-gradient(180deg, rgba(10,10,11,0.48), rgba(10,10,11,0.66));
+    radial-gradient(800px 460px at 50% -8%, rgba(228,97,19,0.12), transparent 62%),
+    linear-gradient(180deg, rgba(10,10,11,0.40), rgba(10,10,11,0.56));
 }
 
 /* ---- header ---- */
-header { text-align: center; margin-bottom: 34px; }
+header { text-align: center; margin-bottom: 20px; }
 .logo {
-  width: 84px; height: 84px; border-radius: 18px; object-fit: cover;
-  box-shadow: 0 8px 30px rgba(228,97,19,0.35), 0 0 0 1px rgba(228,97,19,0.4);
-  margin-bottom: 16px;
+  width: 56px; height: 56px; border-radius: 14px; object-fit: cover;
+  box-shadow: 0 6px 22px rgba(228,97,19,0.35), 0 0 0 1px rgba(228,97,19,0.4);
+  margin-bottom: 10px;
 }
 h1 {
   font-family: 'Poppins', sans-serif; font-weight: 800;
-  font-size: clamp(28px, 5.5vw, 48px); letter-spacing: 2px;
+  font-size: clamp(22px, 4vw, 34px); letter-spacing: 1.5px;
   background: linear-gradient(180deg, #fff 30%, var(--orange-l));
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.tagline { margin: 12px auto 0; max-width: 560px; color: #e8e5df; font-size: 15px; line-height: 1.5; text-shadow: 0 1px 6px rgba(0,0,0,0.8); }
+.tagline { margin: 8px auto 0; max-width: 430px; color: #e8e5df; font-size: 13px; line-height: 1.45; text-shadow: 0 1px 6px rgba(0,0,0,0.8); }
 .hl { color: var(--orange-l); font-weight: 600; }
 
-main { max-width: 760px; margin: 0 auto; }
+main { max-width: 540px; margin: 0 auto; }
 
 /* ---- dropzone ---- */
 .dropzone {
-  position: relative; border: 1.5px dashed rgba(228,97,19,0.45); border-radius: 16px;
+  position: relative; border: 1.5px dashed rgba(228,97,19,0.45); border-radius: 14px;
   background: rgba(228,97,19,0.04);
-  padding: 50px 24px; text-align: center; transition: all .18s ease;
+  padding: 26px 20px; text-align: center; transition: all .18s ease;
 }
 .dropzone.drag {
   border-color: var(--orange); background: rgba(228,97,19,0.10);
@@ -76,20 +76,20 @@ main { max-width: 760px; margin: 0 auto; }
 .corner.br { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
 
 .drop-icon {
-  width: 46px; height: 46px; margin: 0 auto; border-radius: 50%;
-  display: grid; place-items: center; font-size: 18px; color: var(--orange-l);
+  width: 38px; height: 38px; margin: 0 auto; border-radius: 50%;
+  display: grid; place-items: center; font-size: 15px; color: var(--orange-l);
   background: rgba(228,97,19,0.12); border: 1px solid rgba(228,97,19,0.4);
   animation: bob 1.8s ease-in-out infinite;
 }
 @keyframes bob { 50% { transform: translateY(6px); } }
-.drop-title { font-family: 'Poppins'; font-weight: 700; letter-spacing: .5px; margin-top: 14px; font-size: 18px; text-shadow: 0 1px 6px rgba(0,0,0,0.85); }
-.drop-sub { color: #cfccc4; margin-top: 6px; font-size: 13px; text-shadow: 0 1px 5px rgba(0,0,0,0.8); }
+.drop-title { font-family: 'Poppins'; font-weight: 700; letter-spacing: .5px; margin-top: 10px; font-size: 16px; text-shadow: 0 1px 6px rgba(0,0,0,0.85); }
+.drop-sub { color: #cfccc4; margin-top: 5px; font-size: 12px; text-shadow: 0 1px 5px rgba(0,0,0,0.8); }
 
 /* ---- buttons ---- */
 .btn {
-  margin-top: 20px; font-family: 'Inter'; font-weight: 600; font-size: 14px; letter-spacing: .3px;
-  background: var(--orange); color: #160a02; border: 0; border-radius: 10px;
-  padding: 12px 26px; cursor: pointer; transition: all .15s;
+  margin-top: 16px; font-family: 'Inter'; font-weight: 600; font-size: 13px; letter-spacing: .3px;
+  background: var(--orange); color: #160a02; border: 0; border-radius: 9px;
+  padding: 10px 22px; cursor: pointer; transition: all .15s;
 }
 .btn:hover { background: var(--orange-l); box-shadow: 0 8px 24px rgba(228,97,19,0.4); transform: translateY(-1px); }
 .btn:active { transform: translateY(0); }
