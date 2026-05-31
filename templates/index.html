@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE SUPPRESSOR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <header>
+    <h1 class="glitch" data-text="THE SUPPRESSOR">THE SUPPRESSOR</h1>
+    <p class="tagline">Drop any file. The router picks the best route. <span class="hl">≥75% smaller</span>, quality intact.</p>
+  </header>
+
+  <main>
+    <div id="drop" class="dropzone">
+      <div class="corner tl"></div><div class="corner tr"></div>
+      <div class="corner bl"></div><div class="corner br"></div>
+      <div class="drop-inner">
+        <div class="drop-icon">▼</div>
+        <p class="drop-title">DRAG FILES HERE</p>
+        <p class="drop-sub">images · video · audio · PDF · anything</p>
+        <button id="browse" class="btn">SELECT FILES</button>
+        <input id="file-input" type="file" multiple hidden>
+      </div>
+    </div>
+
+    <div id="status" class="status hidden">
+      <span class="spinner"></span>
+      <span id="status-text">COMPRESSING…</span>
+    </div>
+
+    <section id="results" class="results"></section>
+  </main>
+
+  <footer>
+    <span>UNIVERSAL FILE COMPRESSOR</span>
+    <span class="dim" id="totals"></span>
+  </footer>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
