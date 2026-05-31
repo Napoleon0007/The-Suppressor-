@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THE SUPPRESSOR</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <title>The Suppressor — by Rex Trueform</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="scanlines"></div>
-
   <header>
-    <h1 class="glitch" data-text="THE SUPPRESSOR">THE SUPPRESSOR</h1>
-    <p class="tagline">Drop any file. The router picks the best route. <span class="hl">≥75% smaller</span>, quality intact.</p>
+    <img class="logo" src="{{ url_for('static', filename='logo.png') }}" alt="Rex Trueform">
+    <h1>THE SUPPRESSOR</h1>
+    <p class="tagline">Drop any file. It picks the best route and makes it <span class="hl">far smaller</span> — or converts it to the format you want.</p>
   </header>
 
   <main>
@@ -49,7 +50,7 @@
   </main>
 
   <footer>
-    <span>UNIVERSAL FILE COMPRESSOR</span>
+    <span class="brand">REX&nbsp;TRUEFORM</span>
     <span class="dim" id="totals"></span>
   </footer>
 
