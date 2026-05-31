@@ -119,26 +119,27 @@ h1 {
 
 /* ---- dropzone ---- */
 .dropzone {
-  position: relative; border: 1.5px dashed rgba(228,97,19,0.5); border-radius: 16px;
-  background: rgba(228,97,19,0.05); backdrop-filter: blur(3px);
+  position: relative; border: 2px solid #fff; border-radius: 16px;
+  background: var(--orange);
   padding: 24px 16px; text-align: center; transition: all .18s ease;
+  box-shadow: 0 10px 28px rgba(228,97,19,0.4);
 }
-.dropzone.drag { border-color: var(--orange-l); background: rgba(228,97,19,0.13);
-  box-shadow: 0 0 0 4px rgba(228,97,19,0.14), inset 0 0 30px rgba(228,97,19,0.12); }
-.corner { position: absolute; width: 13px; height: 13px; border: 2px solid var(--orange); opacity: .6; }
+.dropzone.drag { background: var(--orange-l); border-color: #fff;
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.25), 0 12px 32px rgba(228,97,19,0.5); }
+.corner { position: absolute; width: 13px; height: 13px; border: 2px solid #fff; opacity: .9; }
 .corner.tl { top: 9px; left: 9px; border-right: 0; border-bottom: 0; }
 .corner.tr { top: 9px; right: 9px; border-left: 0; border-bottom: 0; }
 .corner.bl { bottom: 9px; left: 9px; border-right: 0; border-top: 0; }
 .corner.br { bottom: 9px; right: 9px; border-left: 0; border-top: 0; }
 .drop-icon {
   width: 40px; height: 40px; margin: 0 auto; border-radius: 50%;
-  display: grid; place-items: center; font-size: 15px; color: var(--orange-l);
-  background: rgba(228,97,19,0.14); border: 1px solid rgba(228,97,19,0.45);
+  display: grid; place-items: center; font-size: 15px; color: #000;
+  background: rgba(255,255,255,0.28); border: 1px solid rgba(0,0,0,0.35);
   animation: bob 1.8s ease-in-out infinite;
 }
 @keyframes bob { 50% { transform: translateY(6px); } }
-.drop-title { font-family: 'Poppins'; font-weight: 700; letter-spacing: .5px; margin-top: 10px; font-size: 15px; text-shadow: 0 1px 6px rgba(0,0,0,0.85); }
-.drop-sub { color: #cfccc4; margin-top: 5px; font-size: 11.5px; text-shadow: 0 1px 5px rgba(0,0,0,0.8); }
+.drop-title { font-family: 'Poppins'; font-weight: 800; letter-spacing: .5px; margin-top: 10px; font-size: 15px; color: #000; }
+.drop-sub { color: #1a1208; margin-top: 5px; font-size: 11.5px; font-weight: 500; }
 
 /* ---- buttons ---- */
 .btn {
@@ -148,6 +149,9 @@ h1 {
 }
 .btn:hover { background: var(--orange-l); box-shadow: 0 8px 22px rgba(228,97,19,0.45); transform: translateY(-1px); }
 .btn:active { transform: translateY(0); }
+/* SELECT FILES sits on the orange drop zone — black for contrast */
+#browse { background: #0a0a0e; color: #fff; }
+#browse:hover { background: #000; color: #fff; box-shadow: 0 8px 22px rgba(0,0,0,0.45); }
 
 /* ---- queue ---- */
 .queue-wrap { border: 1px solid var(--line); border-radius: 14px; background: var(--glass); backdrop-filter: blur(10px); overflow: hidden; }

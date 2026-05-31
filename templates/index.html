@@ -29,7 +29,10 @@
 
       <div class="content">
         <header>
-          <img class="logo" src="{{ url_for('static', filename='logo.png') }}" alt="Rex Trueform">
+          <video class="logo" autoplay muted loop playsinline
+                 poster="{{ url_for('static', filename='logo.png') }}">
+            <source src="{{ url_for('static', filename='logo.mp4') }}" type="video/mp4">
+          </video>
           <div class="brandline">
             <h1>THE SUPPRESSOR</h1>
             <span class="byline">by Rex Trueform</span>
