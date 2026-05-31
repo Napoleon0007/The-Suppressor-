@@ -15,6 +15,7 @@ from pathlib import Path
 
 from .result import Result
 from .chains import image, video, audio, pdf, binary
+from . import convert
 
 # Goal: output should be <= 25% of the original size (i.e. >= 75% smaller).
 # This is the target the chains push toward, not a guarantee — already-compressed
@@ -93,11 +94,31 @@ CHAINS = {
 }
 
 
-def route(src: Path, out_dir: Path) -> Result:
-    """Pick a chain for `src`, run it, and guarantee we never return a bigger file."""
-    kind = sniff(src)
-    chain = CHAINS.get(kind, binary.compress)
+def route(src: Path, out_dir: Path, target: str | None = None) -> Result:
+    """Compress `src`, or convert it to `target` if given.
 
+    Auto mode (target=None): pick the best chain and guarantee the output is
+    never bigger than the input. Convert mode (target set): convert AND compress
+    into the chosen format — size isn't capped, since the user asked for it.
+    """
+    kind = sniff(src)
+
+    # ---- Convert mode -------------------------------------------------------
+    if target:
+        try:
+            if kind == "image":
+                return convert.image_to(src, out_dir, target)
+            if kind == "audio":
+                return convert.audio_to(src, out_dir, target)
+            if kind == "video":
+                return convert.video_to(src, out_dir, target)
+            return Result(False, None, "convert",
+                          f"{kind} files can't be converted to {target}")
+        except Exception as exc:
+            return Result(False, None, "convert", note=f"error: {exc}")
+
+    # ---- Auto mode ----------------------------------------------------------
+    chain = CHAINS.get(kind, binary.compress)
     try:
         result = chain(src, out_dir, TARGET_RATIO)
     except Exception as exc:  # a broken file shouldn't take down the whole batch

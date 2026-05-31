@@ -69,6 +69,7 @@ def index():
 def compress():
     purge_old()
     files = request.files.getlist("files")
+    targets = request.form.getlist("targets")   # aligned with files; "auto" or a format
     if not files:
         return jsonify({"error": "no files uploaded"}), 400
 
@@ -77,7 +78,7 @@ def compress():
     out_dir.mkdir(parents=True, exist_ok=True)
 
     results = []
-    for f in files:
+    for i, f in enumerate(files):
         name = Path(f.filename or "").name
         if not name:
             continue
@@ -85,7 +86,9 @@ def compress():
         f.save(src)
         orig = src.stat().st_size
 
-        res = route(src, out_dir)
+        choice = (targets[i] if i < len(targets) else "auto").lower()
+        target = None if choice in ("", "auto") else choice
+        res = route(src, out_dir, target)
 
         if res.ok and res.out_path and res.out_path.exists():
             new_size = res.out_path.stat().st_size
