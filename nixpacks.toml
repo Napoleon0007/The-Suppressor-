@@ -1,0 +1,5 @@
+# Railway / Nixpacks build config.
+# The video & audio chains shell out to ffmpeg, which isn't in the base image —
+# install it here so the deployed app actually works.
+[phases.setup]
+aptPkgs = ["ffmpeg"]
