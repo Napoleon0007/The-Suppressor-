@@ -13,6 +13,7 @@ This is the single source of truth for the project. Everything — what it is, h
 | **Name** | The Suppressor (Luke verbally calls it "the compressor") |
 | **Owner / brand** | Rex Trueform — orange `#E46113` on black |
 | **Repo** | [Napoleon0007/The-Suppressor-](https://github.com/Napoleon0007/The-Suppressor-) |
+| **Live** | https://the-suppressor-production.up.railway.app |
 | **Local path** | `~/Desktop/The-Suppressor/` |
 | **Stack** | Python 3 · Flask · vanilla JS · ffmpeg · Pillow |
 | **Built** | 31 May 2026 |
@@ -125,8 +126,9 @@ python3 app.py            # → http://127.0.0.1:7437 (auto-picks a free port)
 
 ## 8. Deploying (Railway)
 
-- `Procfile` starts the app with **waitress** on `$PORT`.
-- `nixpacks.toml` installs **ffmpeg** into the build (without it, the media chains break in the cloud — this is the #1 deploy gotcha).
+- **Live:** https://the-suppressor-production.up.railway.app — Railway project `the-suppressor` (id `9cffaf87-1594-4b7d-98d6-744ca175dd77`), service `the-suppressor`, region sfo.
+- Built from the **`Dockerfile`** (not nixpacks): `python:3.12-slim` + `apt install ffmpeg`, then waitress on `$PORT`. The Dockerfile is what guarantees ffmpeg is present — nixpacks `aptPkgs` did **not** put it on PATH (the media chains failed with "ffmpeg not found"). This is the #1 deploy gotcha; the Dockerfile is the fix.
+- Redeploy from the local dir: `railway up --service the-suppressor --ci`.
 - **Known limit:** H.265 / VP9 video re-encodes are CPU-heavy and slow on small instances — large videos may take minutes or time out. Images, audio, PDFs and the generic chain are snappy in the cloud. Heavy video is best run locally.
 
 ---
@@ -153,4 +155,5 @@ python3 app.py            # → http://127.0.0.1:7437 (auto-picks a free port)
 
 - **31 May 2026** — Initial build: smart-routing compressor, 5 chains, never-bigger guarantee. Verified live end to end.
 - **31 May 2026** — Added Convert-to mode (per-file Auto / convert picker) with the conversion matrix and clean human errors.
-- **31 May 2026** — Rebranded the front end to the Rex Trueform identity (orange/black, logo, Poppins/Inter); added `nixpacks.toml` for Railway ffmpeg.
+- **31 May 2026** — Rebranded the front end to the Rex Trueform identity (orange/black, logo, Poppins/Inter).
+- **31 May 2026** — Deployed to Railway. Switched the build from nixpacks to a Dockerfile so ffmpeg is guaranteed present; verified all chains live (wav→mp3 90.8%, wav→flac 91.4%, jpg auto 69.5%). Live at https://the-suppressor-production.up.railway.app

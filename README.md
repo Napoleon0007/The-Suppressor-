@@ -44,4 +44,8 @@ Opens on <http://127.0.0.1:7437> (auto-picks a free port if 7437 is taken).
 
 ## Deploy (Railway)
 
-`Procfile` serves the app with waitress on `$PORT`. Note: heavy video re-encodes are CPU-bound and slow on small instances — best run locally for large media.
+**Live:** https://the-suppressor-production.up.railway.app
+
+Built from the `Dockerfile` (`python:3.12-slim` + `apt install ffmpeg`, served by waitress on `$PORT`). The Dockerfile is deliberate — it guarantees ffmpeg is present, which nixpacks did not. Redeploy with `railway up --service the-suppressor --ci`.
+
+Note: heavy video re-encodes are CPU-bound and slow on small instances — best run locally for large media.
