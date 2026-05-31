@@ -2,63 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#06060a">
   <title>The Suppressor — by Rex Trueform</title>
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <video class="bg-video" autoplay muted loop playsinline
-         poster="{{ url_for('static', filename='bg_poster.jpg') }}">
-    <source src="{{ url_for('static', filename='bg.mp4') }}" type="video/mp4">
-  </video>
-  <div class="bg-overlay"></div>
+  <!-- drifting aurora blobs behind the product -->
+  <div class="aurora a1"></div>
+  <div class="aurora a2"></div>
+  <div class="aurora a3"></div>
 
-  <header>
-    <img class="logo" src="{{ url_for('static', filename='logo.png') }}" alt="Rex Trueform">
-    <h1>THE SUPPRESSOR</h1>
-    <p class="tagline">Drop any file. It picks the best route and makes it <span class="hl">far smaller</span> — or converts it to the format you want.</p>
-  </header>
+  <!-- the product: everything lives in this one box -->
+  <div class="frame">
+    <div class="product">
+      <!-- ambient flamingos video, inside the box -->
+      <video class="card-video" autoplay muted loop playsinline
+             poster="{{ url_for('static', filename='bg_poster.jpg') }}">
+        <source src="{{ url_for('static', filename='bg.mp4') }}" type="video/mp4">
+      </video>
+      <div class="card-tint"></div>
+      <div class="grain"></div>
 
-  <main>
-    <div id="drop" class="dropzone">
-      <div class="corner tl"></div><div class="corner tr"></div>
-      <div class="corner bl"></div><div class="corner br"></div>
-      <div class="drop-inner">
-        <div class="drop-icon">▼</div>
-        <p class="drop-title">DRAG FILES HERE</p>
-        <p class="drop-sub">images · video · audio · PDF · anything</p>
-        <button id="browse" class="btn">SELECT FILES</button>
-        <input id="file-input" type="file" multiple hidden>
+      <div class="content">
+        <header>
+          <img class="logo" src="{{ url_for('static', filename='logo.png') }}" alt="Rex Trueform">
+          <div class="brandline">
+            <h1>THE SUPPRESSOR</h1>
+            <span class="byline">by Rex Trueform</span>
+          </div>
+        </header>
+
+        <p class="tagline">Drop any file — it picks the best route and makes it <span class="hl">far smaller</span>, or converts it to the format you want.</p>
+
+        <div id="drop" class="dropzone">
+          <div class="corner tl"></div><div class="corner tr"></div>
+          <div class="corner bl"></div><div class="corner br"></div>
+          <div class="drop-inner">
+            <div class="drop-icon">▼</div>
+            <p class="drop-title">DRAG FILES HERE</p>
+            <p class="drop-sub">images · video · audio · PDF · anything</p>
+            <button id="browse" class="btn">SELECT FILES</button>
+            <input id="file-input" type="file" multiple hidden>
+          </div>
+        </div>
+
+        <section id="queue-wrap" class="queue-wrap hidden">
+          <div class="queue-head">
+            <span>QUEUE — READY</span>
+            <span class="dim">pick a mode, then press RUN ↓</span>
+          </div>
+          <div id="queue" class="queue"></div>
+          <div class="queue-actions">
+            <button id="run" class="btn run">RUN</button>
+            <button id="clear" class="btn ghost">CLEAR</button>
+          </div>
+        </section>
+
+        <div id="status" class="status hidden">
+          <span class="spinner"></span>
+          <span id="status-text">COMPRESSING…</span>
+        </div>
+
+        <section id="results" class="results"></section>
+
+        <footer>
+          <span class="brand">REX&nbsp;TRUEFORM</span>
+          <span class="dim" id="totals"></span>
+        </footer>
       </div>
     </div>
-
-    <section id="queue-wrap" class="queue-wrap hidden">
-      <div class="queue-head">
-        <span>QUEUE — READY</span>
-        <span class="dim">pick a mode, then press RUN ↓</span>
-      </div>
-      <div id="queue" class="queue"></div>
-      <div class="queue-actions">
-        <button id="run" class="btn run">RUN</button>
-        <button id="clear" class="btn ghost">CLEAR</button>
-      </div>
-    </section>
-
-    <div id="status" class="status hidden">
-      <span class="spinner"></span>
-      <span id="status-text">COMPRESSING…</span>
-    </div>
-
-    <section id="results" class="results"></section>
-  </main>
-
-  <footer>
-    <span class="brand">REX&nbsp;TRUEFORM</span>
-    <span class="dim" id="totals"></span>
-  </footer>
+  </div>
 
   <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>

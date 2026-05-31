@@ -157,3 +157,22 @@ function escape(s) {
   d.textContent = s;
   return d.innerHTML;
 }
+
+// ---- subtle pointer-tilt on the product (desktop / fine-pointer only) ----
+(function tilt() {
+  const frame = document.querySelector('.frame');
+  if (!frame || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let tx = 0, ty = 0, dx = 0, dy = 0;
+  window.addEventListener('mousemove', (e) => {
+    const r = frame.getBoundingClientRect();
+    dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+    dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+  });
+  (function loop() {
+    tx += (dx - tx) * 0.07; ty += (dy - ty) * 0.07;
+    frame.style.transform =
+      `perspective(1300px) rotateY(${tx * 5}deg) rotateX(${-ty * 5}deg)`;
+    requestAnimationFrame(loop);
+  })();
+})();
