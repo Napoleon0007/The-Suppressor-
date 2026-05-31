@@ -10,6 +10,12 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+  <video class="bg-video" autoplay muted loop playsinline
+         poster="{{ url_for('static', filename='bg_poster.jpg') }}">
+    <source src="{{ url_for('static', filename='bg.mp4') }}" type="video/mp4">
+  </video>
+  <div class="bg-overlay"></div>
+
   <header>
     <img class="logo" src="{{ url_for('static', filename='logo.png') }}" alt="Rex Trueform">
     <h1>THE SUPPRESSOR</h1>
@@ -31,8 +37,8 @@
 
     <section id="queue-wrap" class="queue-wrap hidden">
       <div class="queue-head">
-        <span>QUEUE</span>
-        <span class="dim">pick a mode per file</span>
+        <span>QUEUE — READY</span>
+        <span class="dim">pick a mode, then press RUN ↓</span>
       </div>
       <div id="queue" class="queue"></div>
       <div class="queue-actions">

@@ -45,8 +45,11 @@ clearBtn.addEventListener('click', () => { queue = []; renderQueue(); });
 runBtn.addEventListener('click', run);
 
 function addFiles(fileList) {
+  if (!fileList || !fileList.length) return;
   for (const f of fileList) queue.push({ file: f, target: 'auto' });
   renderQueue();
+  // make it obvious the file loaded: bring the queue + RUN button into view
+  queueWrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function renderQueue() {
